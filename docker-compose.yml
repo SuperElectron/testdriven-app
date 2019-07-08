@@ -1,0 +1,43 @@
+version: '3.7'
+
+services:
+
+  users:
+    container_name: "TTD-users"
+    build:
+      context: ./services/users
+      dockerfile: Dockerfile
+    volumes:
+      - './services/users:/usr/src/app'
+    ports:
+      - 5001:5000
+    environment:
+      - FLASK_APP=${FLASK_APP}
+      - FLASK_ENV=${FLASK_ENV}
+      - APP_SETTINGS=${APP_SETTINGS}
+      - SECRET_KEY=${SECRET_KEY}
+
+    depends_on:
+      - users-db
+
+  users-db:
+    container_name: "TTD-mongodb"
+    build:
+      context: ./services/users/project/db
+      dockerfile: Dockerfile
+    ports:
+      - 27017:27017
+    env_file:
+     - ".env" # stores credentials and system variables
+    # environment:
+    #   - MONGO_INITDB_ROOT_USERNAME=${MONGO_ROOT_USERNAME}
+    #   - MONGO_INITDB_ROOT_PASSWORD=${MONGO_ROOT_PASSWORD}
+    #   - MONGO_INITDB_DATABASE=${MONGO_INITDB}
+
+    # volumes:
+      # - ./services/users/project/data/:/data/db
+
+    # volumes:
+    #  - ".services/users/project/db/data:/data/db"                           # Database files
+    #  - ./init.js:/docker-entrypoint-initdb.d/init.js
+    #  - ".services/users/project/db/fixtures/default.js:/docker-entrypoint-initdb.d/default.js"    # To create Db at start
