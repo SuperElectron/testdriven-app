@@ -1,0 +1,4 @@
+# Shell scripts KEEP end of line = LF
+*.sh eol=lf
+manage.py eol=lf
+__init__.py eol=lf
