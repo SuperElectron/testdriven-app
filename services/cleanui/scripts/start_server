@@ -1,0 +1,6 @@
+#!/bin/bash
+cd /home/ec2-user/node-website
+export PORT=80
+echo 'listing applications that are running'
+forever list
+forever start src/index.js

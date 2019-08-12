@@ -41,3 +41,25 @@ services:
     #  - ".services/users/project/db/data:/data/db"                           # Database files
     #  - ./init.js:/docker-entrypoint-initdb.d/init.js
     #  - ".services/users/project/db/fixtures/default.js:/docker-entrypoint-initdb.d/default.js"    # To create Db at start
+
+  cleanui:
+    build:
+      context: ./services/cleanui
+      dockerfile: Dockerfile
+    volumes:
+      - './services/cleanui:/usr/src/app'
+      - '/usr/src/app/node_modules'
+    ports:
+      - 3007:3000
+    env_file:
+     - ".env" # stores credentials and system variables
+    environment:
+      - NODE_ENV=${NODE_ENV}
+      - NODE_PATH=${NODE_PATH}
+      # configure http://localhost as web-browser url
+      - REACT_APP_USERS_SERVICE_URL=${REACT_APP_USERS_SERVICE_URL}
+      # enable chokidar to use polling to watch for file changes 
+      - CHOKIDAR_USEPOLLING=${CHOKIDAR_USEPOLLING}
+    depends_on:
+      - users
+      - users-db
