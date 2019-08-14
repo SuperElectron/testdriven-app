@@ -16,4 +16,6 @@ cd ../..
 #docker-compose -f docker-compose-prod.yml up -d --build
 docker-compose up -d --build
 echo Backend viewing at http://localhost:5001/users/ping 
+
+cd ../cleanui
 npm start

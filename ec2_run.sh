@@ -1,10 +1,18 @@
 # run script in terminal  $: ./ec2_run.sh
 
 cd ~
-
-echo installing fundentals - python - docker
+echo
+echo installing fundamentals - python - docker
 sudo apt-get update
-sudo apt-get install python3-venv install npm apt-transport-https ca-certificates curl gnupg-agent software-properties-common nginx
+sudo apt-get install \
+    python3-venv \
+    npm \
+    apt-transport-https \
+    ca-certificates \
+    curl \
+    gnupg-agent \
+    software-properties-common \
+    nginx
 echo ***********************
 echo
 
@@ -44,15 +52,16 @@ echo
 
 # install npm to create node_modules and package-lock.json
 cd ~/testdriven-app/services/cleanui
+echo ***********************
 echo
+echo running npm run build
+npm run build 
+echo ***********************
 echo
-echo running npm install
-sudo npm install 
 
 
 # start the docker project
 cd ~/testdriven-app
-echo 
 echo
 echo checking status of nginx
 # checking status of nginx
@@ -60,9 +69,14 @@ sudo systemctl status nginx
 
 # point docker back to localhost
 eval $(docker-machine env -u)
+echo ***********************
 echo
-echo
-#sudo docker-compose up -d --build
-sudo docker-compose up -d --build
 
-echo Go to http://ec2-18-216-81-201.us-east-2.compute.amazonaws.com:5001/users/ping
+#sudo docker-compose up -d --build
+sudo docker-compose -f docker-compose-prod.yml up -d --build
+echo
+echo ***********************
+echo backend http://ec2-18-216-81-201.us-east-2.compute.amazonaws.com:5001/users/ping
+echo
+echo frontend
+docker-machine ip testdriven-prod
