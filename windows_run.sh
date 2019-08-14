@@ -1,3 +1,5 @@
+# run script in terminal  $: ./windows_run.sh
+
 # download and verify docker depencies	
 echo starting sequence
 docker-compose --version
@@ -11,5 +13,7 @@ source venv/scripts/activate
 echo setting file permissions
 chmod 755 entrypoint.sh
 cd ../..
+#docker-compose -f docker-compose-prod.yml up -d --build
 docker-compose up -d --build
-echo Go to localhost:5001/users/ping
+echo Backend viewing at http://localhost:5001/users/ping 
+npm start
