@@ -50,32 +50,29 @@ cd ~/testdriven-app/services/users
 sudo rm -d venv
 sudo python3 -m venv venv
 source venv/bin/activate
-echo
-echo
 echo give r/x permission so docker-compose can execute 
 sudo chmod 755 entrypoint.sh
-echo 
+echo
 echo
 
-# start the docker project
 cd ~/testdriven-app
 echo checking status of nginx
-# checking status of nginx
 sudo systemctl status nginx
+echo
+echo
 
 # install npm to create node_modules and package-lock.json
 cd ~/testdriven-app/services/cleanui
+sudo rm -d node_modules
 echo running npm run build
 sudo npm run build 
 echo 
 echo
 
-
-
-#sudo docker-compose up -d --build
 cd ~/testdriven-app
 # point docker back to localhost
 # eval $(docker-machine env -u)
+#sudo docker-compose up -d --build
 sudo docker-compose -f docker-compose-prod.yml up -d --build
 echo
 echo 
