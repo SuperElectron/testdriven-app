@@ -1,3 +1,5 @@
+# run script in terminal  $: ./windows_stop.sh
+
 echo shutting down project
 docker-compose down
 echo 

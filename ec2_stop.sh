@@ -1,3 +1,5 @@
+# run script in terminal  $: ./ec2_stop.sh
+
 cd ~/testdriven-app
 echo shutting down project
 sudo docker-compose down

@@ -15,7 +15,8 @@ const loadable = loader =>
   })
 
 const routes = [
-  // System Pages
+  // *****************************
+  //      STANDARD PAGES WITH TEMPLATE
   {
     path: '/user/login',
     component: loadable(() => import('pages/user/login')),
@@ -27,7 +28,8 @@ const routes = [
     exact: true,
   },
 
-  // Dashboards
+  // *****************************
+  //      STANDARD DASHBOARDS WITH TEMPLATE
   {
     path: '/dashboard/alpha',
     component: loadable(() => import('pages/dashboard/alpha')),
@@ -53,7 +55,9 @@ const routes = [
     exact: true,
   },
 
-  // Default Pages
+  // *****************************
+  //      DEFAULT PAGES WITH TEMPLATE
+  
   {
     path: '/pages/login-alpha',
     component: loadable(() => import('pages/pages/login-alpha')),
@@ -85,7 +89,8 @@ const routes = [
     exact: true,
   },
 
-  // Apps
+  // *****************************
+  //      APPS TEMPLATE
   {
     path: '/apps/messaging',
     component: loadable(() => import('pages/apps/messaging')),
@@ -107,7 +112,8 @@ const routes = [
     exact: true,
   },
 
-  // Ecommerce
+  // *****************************
+  //      ECOMMERCE WITH TEMPLATE
   {
     path: '/ecommerce/dashboard',
     component: loadable(() => import('pages/ecommerce/dashboard')),
@@ -144,7 +150,8 @@ const routes = [
     exact: true,
   },
 
-  // Layout
+  // *****************************
+  //      LAYOUT WITH TEMPLATE
   {
     path: '/layout/bootstrap',
     component: loadable(() => import('pages/layout/bootstrap')),
@@ -171,7 +178,8 @@ const routes = [
     exact: true,
   },
 
-  // Icons
+  // *****************************
+  //      ICONS DASHBOARDS WITH TEMPLATE
   {
     path: '/icons/fontawesome',
     component: loadable(() => import('pages/icons/fontawesome')),
@@ -188,7 +196,8 @@ const routes = [
     exact: true,
   },
 
-  // Charts
+  // *****************************
+  //      CHARTS WITH TEMPLATE
   {
     path: '/charts/chartist',
     component: loadable(() => import('pages/charts/chartist')),
@@ -210,7 +219,8 @@ const routes = [
     exact: true,
   },
 
-  // Blog
+  // *****************************
+  //      BLOG WITH TEMPLATE
   {
     path: '/blog/feed',
     component: loadable(() => import('pages/blog/feed')),
@@ -227,7 +237,8 @@ const routes = [
     exact: true,
   },
 
-  // YouTube
+  // *****************************
+  //      YOUTUBE WITH TEMPLATE
   {
     path: '/youtube/feed',
     component: loadable(() => import('pages/youtube/feed')),
@@ -239,7 +250,8 @@ const routes = [
     exact: true,
   },
 
-  // GitHub
+  // *****************************
+  //      GITHJUB WITH TEMPLATE
   {
     path: '/github/explore',
     component: loadable(() => import('pages/github/explore')),
@@ -251,12 +263,14 @@ const routes = [
     exact: true,
   },
 
-  // AntDesign
+  // *****************************
+  //      ANT-DESIGN WITH TEMPLATE
   {
     path: '/antd',
     component: loadable(() => import('pages/antd')),
     exact: true,
   },
+  
 ]
 
 class Router extends React.Component {
