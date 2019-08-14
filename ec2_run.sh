@@ -1,52 +1,67 @@
 # run script in terminal  $: ./ec2_run.sh
 
 cd ~
-# install fundamentals (python & docker)
-sudo apt-get update
-sudo apt-get install \
-	python3-venv \
-	install npm \
-    apt-transport-https \
-    ca-certificates \
-    curl \
-    gnupg-agent \
-    software-properties-common \
-    nginx
 
-# download and verify docker depencies	
+echo installing fundentals - python - docker
+sudo apt-get update
+sudo apt-get install python3-venv install npm apt-transport-https ca-certificates curl gnupg-agent software-properties-common nginx
+echo ***********************
+echo
+
+echo download and verify docker depencies	
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+echo ***********************
+echo verify fingerprints - docker
 sudo apt-key fingerprint 0EBFCD88
 
-# get docker image release for intial installation
+echo get docker image release - intial installation
 sudo add-apt-repository \
    "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
    $(lsb_release -cs) \
    stable"
-# install docker   
+echo
+echo ***********************
+echo
+echo install docker   
 sudo apt-get update
 sudo apt-get install docker-ce docker-ce-cli containerd.io
 sudo curl -L "https://github.com/docker/compose/releases/download/1.24.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+echo
+echo ***********************
+echo
 docker-compose --version
+echo ***********************
+echo
 
-# activate the python virtual environment
+echo activate the python virtual environment
 cd ~/testdriven-app/services/users
 python3 -m venv venv
 source venv/bin/activate
-# set r/x permission so docker-compose can execute 
+echo give r/x permission so docker-compose can execute 
 sudo chmod 755 entrypoint.sh
+echo ***********************
+echo
 
 # install npm to create node_modules and package-lock.json
 cd ~/testdriven-app/services/cleanui
-npm install 
+echo
+echo
+echo running npm install
+sudo npm install 
 
 
 # start the docker project
 cd ~/testdriven-app
+echo 
+echo
+echo checking status of nginx
 # checking status of nginx
-systemctl status nginx
+sudo systemctl status nginx
 
 # point docker back to localhost
 eval $(docker-machine env -u)
+echo
+echo
 #sudo docker-compose up -d --build
 sudo docker-compose up -d --build
 
