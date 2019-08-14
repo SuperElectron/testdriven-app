@@ -7,7 +7,7 @@ sudo apt-get update
 sudo apt-get install \
     python3-venv \
     npm \
-    nodejs \
+    nodejsg \
     apt-transport-https \
     ca-certificates \
     curl \
@@ -19,9 +19,12 @@ echo
 
 echo download and verify docker depencies	
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-echo 
+echo
+echo
 echo verify fingerprints - docker
 sudo apt-key fingerprint 0EBFCD88
+echo
+echo
 
 echo get docker image release - intial installation
 sudo add-apt-repository \
@@ -44,41 +47,39 @@ echo
 
 echo activate the python virtual environment
 cd ~/testdriven-app/services/users
-python3 -m venv venv
+sudo rm -d venv
+sudo python3 -m venv venv
 source venv/bin/activate
+echo
 echo
 echo give r/x permission so docker-compose can execute 
 sudo chmod 755 entrypoint.sh
 echo 
 echo
 
-# install npm to create node_modules and package-lock.json
-cd ~/testdriven-app/services/cleanui
-echo 
-echo
-echo running npm run build
-npm run build 
-echo 
-echo
-
-
 # start the docker project
 cd ~/testdriven-app
-echo
 echo checking status of nginx
 # checking status of nginx
 sudo systemctl status nginx
 
-# point docker back to localhost
-eval $(docker-machine env -u)
-echo ***********************
+# install npm to create node_modules and package-lock.json
+cd ~/testdriven-app/services/cleanui
+echo running npm run build
+sudo npm run build 
+echo 
 echo
 
+
+
 #sudo docker-compose up -d --build
+cd ~/testdriven-app
+# point docker back to localhost
+# eval $(docker-machine env -u)
 sudo docker-compose -f docker-compose-prod.yml up -d --build
 echo
 echo 
 echo backend http://ec2-18-216-81-201.us-east-2.compute.amazonaws.com:5001/users/ping
 echo
 echo frontend
-docker-machine ip testdriven-prod
+sudo docker-machine ip testdriven-prod
