@@ -7,13 +7,11 @@ services:
     build:
       context: ./services/users
       dockerfile: Dockerfile-prod
-    volumes:
-      - './services/users:/usr/src/app'
     expose:
       - 5000
     environment:
       - FLASK_APP=${FLASK_APP}
-      - FLASK_ENV=${FLASK_ENV}
+      - FLASK_ENV=${FLASK_ENV_PRODUCTI0N}
       - APP_SETTINGS=${APP_SETTINGS}
       - SECRET_KEY=${SECRET_KEY}
 
@@ -47,9 +45,6 @@ services:
     build:
       context: ./services/cleanui
       dockerfile: Dockerfile
-    volumes:
-      - './services/cleanui:/usr/src/app'
-      - '/usr/src/app/node_modules'
     ports:
       - 3007:3000
     env_file:
