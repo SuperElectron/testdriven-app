@@ -50,7 +50,7 @@
     "nprogress": "^0.2.0",
     "peity-react": "^0.0.7",
     "prop-types": "^15.7.2",
-    "qs": "^6.7.0",
+    "qs": "^6.7.3",
     "rc-drawer": "^1.10.1",
     "react": "^16.8.6",
     "react-c3js": "^0.1.20",
